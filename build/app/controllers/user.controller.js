@@ -36,25 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.routes = void 0;
-var user_controller_1 = require("../controllers/user.controller");
-exports.routes = function (_a) {
-    var app = _a.app;
-    app.post('/api/user', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var _a, email, first_name, last_name, user;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _a = req.body, email = _a.email, first_name = _a.first_name, last_name = _a.last_name;
-                    return [4 /*yield*/, user_controller_1.UserController.createUser({
-                            email: email,
-                            first_name: first_name,
-                            last_name: last_name
-                        })];
-                case 1:
-                    user = _b.sent();
-                    return [2 /*return*/, res.send(user)];
-            }
+exports.UserController = void 0;
+var user_model_1 = require("../models/user.model");
+exports.UserController = {
+    createUser: function (_a) {
+        var email = _a.email, first_name = _a.first_name, last_name = _a.last_name;
+        return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_b) {
+                return [2 /*return*/, user_model_1.UserModel.create({
+                        email: email,
+                        first_name: first_name,
+                        last_name: last_name
+                    }).then(function (data) {
+                        return data;
+                    }).catch(function (error) {
+                        throw error;
+                    })];
+            });
         });
-    }); });
+    }
 };
