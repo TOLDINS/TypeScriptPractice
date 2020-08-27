@@ -21,13 +21,18 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var bodyParser = __importStar(require("body-parser"));
+var connect_1 = require("./connect");
+var routes_1 = require("./routes");
 var app = express();
 var port = 8080;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+routes_1.routes({ app: app });
 app.get('/', function (req, res) {
     res.send('Welcome');
 });
 app.listen(port, function () {
     console.log('Server has been started!');
 });
+var db = 'mongodb+srv://denis:1111@cluster0.py4vh.mongodb.net/TYPESCIPTPRACTICE?retryWrites=true&w=majority';
+connect_1.connect({ db: db });
